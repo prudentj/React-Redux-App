@@ -4,12 +4,23 @@ import { connect } from 'react-redux';
 //This is actually really fun
 import Loader from 'react-loader-spinner';
 
+import Button from '@material-ui/core/Button';
+import styled from 'styled-components';
 import { fetchData } from '../actions';
+
+const JokeBox = styled.div`
+    margin:5%;
+    display:flex;
+    flex-flow:column;
+    justify-content:center;
+    align-items:center;
+`
+
 
 const Data = props => {
     return (
-        <div>
-            <button onClick={props.fetchData}>FUNNY BUTTON</button>
+        <JokeBox >
+            <Button onClick={props.fetchData} variant="contained" >Joke Please!</Button>
             {!props.data && !props.isLoading && (
                 <h2>Want to know a joke?</h2>
             )}
@@ -24,9 +35,9 @@ const Data = props => {
             )}
             {props.data && !props.isLoading && <div>
                 <h2>{props.data.setup}</h2>
-                <h2>{props.data.punchline}</h2>
+                <h3>{props.data.punchline}</h3>
             </div>}
-        </div>
+        </JokeBox>
     );
 };
 
